@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_happy_clients",
+  "info": {
+    "displayName": "Happy Clients Block",
+    "icon": "emotionHappy",
+    "description": "Testimonial carousel block"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "testimonials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::testimonial.testimonial"
+    }
+  }
+}

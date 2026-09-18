@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_faq_accordions",
+  "info": {
+    "displayName": "FAQ Accordion Block",
+    "icon": "question",
+    "description": "Accordion FAQ block"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "faqs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.faq-item"
+    }
+  }
+}

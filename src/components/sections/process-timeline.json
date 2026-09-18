@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_process_timelines",
+  "info": {
+    "displayName": "Process Timeline Block",
+    "icon": "layer",
+    "description": "Timeline of numbered workflow steps"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.timeline-step"
+    }
+  }
+}

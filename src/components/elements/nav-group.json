@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_elements_nav_groups",
+  "info": {
+    "displayName": "Nav Group",
+    "icon": "layer",
+    "description": "Mega menu navigation group"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string"
+    },
+    "columns": {
+      "type": "integer",
+      "default": 3
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "work"
+      ],
+      "default": "default"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.nav-link"
+    }
+  }
+}

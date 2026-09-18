@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_case_studies",
+  "info": {
+    "displayName": "Case Studies Block",
+    "icon": "briefcase",
+    "description": "Case studies preview block"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "caseStudies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::case-study.case-study"
+    }
+  }
+}

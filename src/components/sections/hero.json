@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_sections_heroes",
+  "info": {
+    "displayName": "Hero Block",
+    "icon": "landscape",
+    "description": "Hero section banner"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "subheading": {
+      "type": "string"
+    },
+    "eyebrows": {
+      "type": "json"
+    },
+    "ctaLabel": {
+      "type": "string"
+    },
+    "ctaHref": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "split",
+        "centered"
+      ],
+      "default": "split"
+    },
+    "showReviews": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

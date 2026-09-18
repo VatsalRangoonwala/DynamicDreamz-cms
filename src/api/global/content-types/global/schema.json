@@ -1,0 +1,81 @@
+{
+  "kind": "singleType",
+  "collectionName": "globals",
+  "info": {
+    "singularName": "global",
+    "pluralName": "globals",
+    "displayName": "Global Settings",
+    "description": "Site-wide header, footer, navigation, and company info"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "default": "Dynamic Dreamz"
+    },
+    "siteDescription": {
+      "type": "text"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "favicon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "headerNav": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.nav-group"
+    },
+    "headerCtaLabel": {
+      "type": "string"
+    },
+    "headerCtaHref": {
+      "type": "string"
+    },
+    "footerColumns": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.footer-column"
+    },
+    "footerBottomLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.nav-link"
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.social-link"
+    },
+    "contactEmail": {
+      "type": "email"
+    },
+    "contactPhone": {
+      "type": "string"
+    },
+    "whatsappNumber": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "copyrightText": {
+      "type": "string"
+    },
+    "defaultSeo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

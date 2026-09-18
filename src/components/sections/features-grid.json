@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_features_grids",
+  "info": {
+    "displayName": "Features Grid Block",
+    "icon": "apps",
+    "description": "Grid of feature cards"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.feature-item"
+    }
+  }
+}

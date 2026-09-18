@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_proof_counters",
+  "info": {
+    "displayName": "Proof Counters Block",
+    "icon": "chartPie",
+    "description": "Animated proof counters"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "counters": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.counter"
+    }
+  }
+}
