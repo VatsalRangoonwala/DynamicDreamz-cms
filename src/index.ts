@@ -1,4 +1,4 @@
-// import type { Core } from '@strapi/strapi';
+import type { Core } from '@strapi/strapi';
 
 export default {
   /**
@@ -7,7 +7,19 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register({ strapi }: { strapi: Core.Strapi }) {
+    strapi.server.use(async (ctx, next) => {
+      if (
+        ctx.method === 'GET' &&
+        (ctx.path === '/health' || ctx.path === '/ping' || ctx.path === '/running')
+      ) {
+        ctx.status = 200;
+        ctx.body = 'running';
+        return;
+      }
+      await next();
+    });
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
