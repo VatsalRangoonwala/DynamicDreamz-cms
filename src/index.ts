@@ -9,6 +9,22 @@ const HEALTH_PATHS = new Set([
   '/api/running',
 ]);
 
+const PUBLIC_READ_ACTIONS = [
+  'api::global.global.find',
+  'api::article.article.find',
+  'api::article.article.findOne',
+  'api::case-study.case-study.find',
+  'api::case-study.case-study.findOne',
+  'api::author.author.find',
+  'api::author.author.findOne',
+  'api::category.category.find',
+  'api::category.category.findOne',
+  'api::testimonial.testimonial.find',
+  'api::testimonial.testimonial.findOne',
+  'api::page.page.find',
+  'api::page.page.findOne',
+];
+
 export default {
   /**
    * An asynchronous register function that runs before
@@ -40,8 +56,36 @@ export default {
    * An asynchronous bootstrap function that runs before
    * your application gets started.
    *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
+   * Automatically ensures public read access for marketing content APIs.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    try {
+      const publicRole = await strapi.db
+        .query('plugin::users-permissions.role')
+        .findOne({ where: { type: 'public' } });
+
+      if (publicRole) {
+        for (const action of PUBLIC_READ_ACTIONS) {
+          const existing = await strapi.db
+            .query('plugin::users-permissions.permission')
+            .findOne({
+              where: { action, role: publicRole.id },
+            });
+
+          if (!existing) {
+            await strapi.db
+              .query('plugin::users-permissions.permission')
+              .create({
+                data: {
+                  action,
+                  role: publicRole.id,
+                },
+              });
+          }
+        }
+      }
+    } catch (err) {
+      strapi.log.warn('Could not auto-grant public permissions during bootstrap:', err);
+    }
+  },
 };
