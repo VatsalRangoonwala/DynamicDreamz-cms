@@ -1,5 +1,14 @@
 import type { Core } from '@strapi/strapi';
 
+const HEALTH_PATHS = new Set([
+  '/health',
+  '/api/health',
+  '/ping',
+  '/api/ping',
+  '/running',
+  '/api/running',
+]);
+
 export default {
   /**
    * An asynchronous register function that runs before
@@ -9,14 +18,20 @@ export default {
    */
   register({ strapi }: { strapi: Core.Strapi }) {
     strapi.server.use(async (ctx, next) => {
+      const normalizedPath =
+        ctx.path.endsWith('/') && ctx.path.length > 1
+          ? ctx.path.slice(0, -1)
+          : ctx.path;
+
       if (
-        ctx.method === 'GET' &&
-        (ctx.path === '/health' || ctx.path === '/ping' || ctx.path === '/running')
+        (ctx.method === 'GET' || ctx.method === 'HEAD') &&
+        HEALTH_PATHS.has(normalizedPath)
       ) {
         ctx.status = 200;
         ctx.body = 'running';
         return;
       }
+
       await next();
     });
   },
