@@ -84,6 +84,37 @@ export default {
           }
         }
       }
+
+      // Auto-register Next.js instant cache revalidation webhook
+      try {
+        const webhookUrl =
+          process.env.NEXT_REVALIDATE_URL ||
+          'http://localhost:3000/api/revalidate?secret=StrapiRevalidateSecret';
+        const existingWebhook = await strapi.db
+          .query('strapi::webhook')
+          .findOne({ where: { name: 'Next.js Revalidation' } });
+
+        if (!existingWebhook) {
+          await strapi.db.query('strapi::webhook').create({
+            data: {
+              name: 'Next.js Revalidation',
+              url: webhookUrl,
+              headers: {},
+              events: [
+                'entry.create',
+                'entry.update',
+                'entry.delete',
+                'entry.publish',
+                'entry.unpublish',
+              ],
+              isEnabled: true,
+            },
+          });
+          strapi.log.info('Auto-registered Next.js Revalidation webhook');
+        }
+      } catch (webhookErr) {
+        strapi.log.warn('Could not auto-register webhook during bootstrap:', webhookErr);
+      }
     } catch (err) {
       strapi.log.warn('Could not auto-grant public permissions during bootstrap:', err);
     }
