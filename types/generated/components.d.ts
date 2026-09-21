@@ -70,6 +70,10 @@ export interface ElementsNavGroup extends Struct.ComponentSchema {
     columns: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<3>;
     items: Schema.Attribute.Component<'elements.nav-link', true>;
     label: Schema.Attribute.String & Schema.Attribute.Required;
+    promoCtaHref: Schema.Attribute.String;
+    promoCtaLabel: Schema.Attribute.String;
+    promoDetails: Schema.Attribute.String;
+    promoTitle: Schema.Attribute.String;
     slug: Schema.Attribute.String;
     variant: Schema.Attribute.Enumeration<['default', 'work']> &
       Schema.Attribute.DefaultTo<'default'>;

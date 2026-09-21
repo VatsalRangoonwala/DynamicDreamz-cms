@@ -11,9 +11,10 @@ const GLOBAL_POPULATE = {
   favicon: true,
   headerNav: {
     populate: {
-      icon: true,
       items: {
-        populate: '*',
+        populate: {
+          icon: true,
+        },
       },
     },
   },
